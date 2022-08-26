@@ -1,0 +1,65 @@
+<div class="container my-5">
+    <h1 class="mb-3">Employees</h1>
+
+    <!--Spinner-->
+    <div *ngIf="isLoading">
+        <div class="spinner-grow" role="status">
+            <span class="visually-hidden">Fetching Employees Data...</span>
+        </div>
+        <br>
+        <span class="spinner-text">Fetching Employees Data...</span>
+    </div>
+    <!--End Spinner-->
+
+    <!--Handle no data response-->
+    <div class="noData" *ngIf="employees && employees.length === 0 && !isLoading">
+        <img src="../../../assets/nodata.png" alt="No Data Found!">
+    </div>
+    <!--End Handle no data response-->
+
+    <!--Add Employee-->
+    <div class="addButton">
+        <button type="button" tool class="btn btn-primary" ngbTooltip="Add New Employee" routerLink="employee/add">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+        </button>
+    </div>
+    <!--End Add Employee-->
+
+    <!--Table-->
+    <table class="table" *ngIf="employees && employees.length > 0 && !isLoading">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Department</th>
+                <th scope="col">Address</th>
+                <th scope="col">Country</th>
+                <th scope="col">Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{employee.id}}</td>
+                <td>{{employee.firstName}}, {{employee.middleName}}, {{employee.lastName}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.contactNumber}}</td>
+                <td>{{employee.department}}</td>
+                <td>{{employee.address_1}}, {{employee.address_2}}, {{employee.postalCode}}</td>
+                <td>{{employee.country}}</td>
+                <td>R{{employee.salary}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ngb-pagination *ngIf="employees && employees.length > 0 && !isLoading"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="employees.length"
+    class="d-flex justify-content-center"></ngb-pagination>
+    <!--End Table-->
+
+</div>

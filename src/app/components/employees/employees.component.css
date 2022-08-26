@@ -1,0 +1,25 @@
+.spinner-grow {
+    left: 50%;
+    margin-left: 40em;
+}
+
+.spinner-text {
+    left: 50%;
+    margin-left: 36em;
+}
+
+.noData {
+    text-align: center;
+}
+
+.addButton {
+    float: right;
+}
+
+.custom-tooltip {
+    --bs-tooltip-bg: var(--bs-primary);
+}
+
+ngb-pagination {
+    text-align: center;
+}
